@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PDF POC</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/test.js') }}"></script>
+    <link rel="stylesheet" href="static/css/test.css">
+    <script>
+    </script>
+</head>
+
+<body>
+    <div class="resultTest">
+    <h5>JS Test</h5>
+    {% for link in PDFs %}
+    <a target="_blank" href={{link}}><img class="img1" src="static/css/Images/pdfPic.png"></a></a>
+    {% endfor %}
+    </div>
+</body>
+
+</html>
