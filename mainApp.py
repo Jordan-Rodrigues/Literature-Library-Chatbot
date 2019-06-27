@@ -1,9 +1,20 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import requests
 import time
 from selenium.webdriver.chrome.options import Options  
 from selenium import webdriver
+import os
+import dialogflow
+import pusher
 app = Flask(__name__)
+
+#setting up pusher client
+pusher_client = pusher.Pusher(
+    app_id=os.getenv('PUSHER_APP_ID'),
+    key=os.getenv('PUSHER_KEY'),
+    secret=os.getenv('PUSHER_SECRET'),
+    cluster=os.getenv('PUSHER_CLUSTER'),
+    ssl=True)
 
 #Creating global variables that can be passed from page to page
 #global fulLURL
@@ -17,11 +28,23 @@ app = Flask(__name__)
 def home():
    return render_template("home.html")
 
+@app.route('/', methods=["POST", "GET"])
+def pageRoute():
+    if request.method == 'POST':
+        return redirect(url_for("results"))
 
 @app.route('/Chatbot')
 def results():
     return render_template("chatbot.html")
     
+@app.route('/send_message', methods=['POST'])
+def send_message():
+    message = request.form['message']
+    project_id = os.getenv('DIALOGFLOW_PROJECT_ID')
+    fulfillment_text = detect_intent_texts(project_id, "unique", message, 'en')
+    time.sleep(1)
+    pusher_client.trigger('ROKbot', 'new_message', {'message' : fulfillment_text})
+    return jsonify(fulfillment_text)
 #-----------------------------------------FUNCTIONS--------------------------------
 def urlCreator(keyword, filterDictionary):
     #First part of the URL
@@ -60,5 +83,16 @@ def urlCreator(keyword, filterDictionary):
     return finalURL
 
 
-#Works https://www.rockwellautomation.com/search/ra_en_NA;keyword=voltage;startIndex=0;activeTab=Literature;spellingCorrect=true;facets=service_ss%253A%2528%2522Asset%2520Management%2520Services%2522%2529;languages=en;locales=en_NA,en_GLOBAL;sort=bma
-#Tests https://www.rockwellautomation.com/search/ra_en_NA;keyword=voltage;startIndex=0;activeTab=Literature;spellingCorrect=true;facets=service_ss%253A%2528%2522Asset%2520Management%2520Services%2552%2529;languages=en;locales=en_NA,en_GLOBAL;sort=bma
+#Sends data to dialogflow
+def detect_intent_texts(project_id, session_id, text, language_code):
+    session_client = dialogflow.SessionsClient()
+    session = session_client.session_path(project_id, session_id)
+
+    if text:
+        text_input = dialogflow.types.TextInput(
+            text=text, language_code=language_code)
+        query_input = dialogflow.types.QueryInput(text=text_input)
+        response = session_client.detect_intent(
+            session=session, query_input=query_input)
+
+        return response.query_result.fulfillment_text
