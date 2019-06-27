@@ -4,7 +4,7 @@ body {
 }
 
 form {
-    width: 70%;
+    width: 100%;
     margin-right: 13%;
     display: inline-block;
 }
@@ -145,7 +145,19 @@ html {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-#solution {
+#ROKSubmit {
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-family: dense;
+    font-size: 3.5em;
+    font-weight: bolder;
+    color: #AE1A26;
+    margin-bottom: 5%;
+}
+
+#ROKSubmit:hover {
+    color: #eeeeee;
 }
 
 /*--------------------------------------PAGE 2----------------------------------*/
@@ -178,7 +190,7 @@ html {
     display: inline-block;
     margin-top: 2%;
     margin-bottom: 2%;
-    margin-right: 2%;
+    margin-right: 5%;
 }
 
 .botSection {
@@ -212,7 +224,8 @@ html {
     font-size: 1.5em;
     margin-top: 2%;
     margin-bottom: 2%;
-    margin-right: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
 }
 
 .userSection {
@@ -277,14 +290,6 @@ html {
     box-shadow: 3px 5px 5px black;
 }
 
-.phoneLogo {
-    width: 50%;
-    height: 6vh;
-    margin: auto;
-    display: block;
-    margin-top: 2vh;
-}
-
 .robot {
     width: 100%;
     height: 30vh;
@@ -326,12 +331,16 @@ html {
     margin-bottom: 0;
 }
 
+#target {
+    width: 65% !important;
+}
+
 .input {
     margin: auto;
     display: inline-block;
     width: 100%;
     height: 4vh;
-    margin-top: 4%;
+    margin-top: 3%;
     border-radius: 20px 20px 20px 20px;
     border: 2px solid rgba(180,180,180,1);
     font-family: "dense", sans-serif;
@@ -349,17 +358,30 @@ html {
     padding-right: 10px;
 }
 
+.micPic {
+    height: 30%;
+    width: 5%;
+    display: inline-block;
+    margin: 0;
+    cursor: pointer;
+    margin-left: -12%;
+    position: relative;
+    top: .8vh;
+}
+
 .sendButton{
     width: 9%;
     height: 4vh;
     background-color: #AE1A26;
     display: inline-block;
     border-radius: 100%;
-    margin-top: 4%;
+    margin-top: 3%;
     position: relative;
     border: 3px solid rgba(180,180,180,1);
     position: relative; 
     top: 5%;
+    cursor: pointer;
+    margin-left: 8%;
 }
 
 .send{
@@ -367,4 +389,21 @@ html {
     height: 3vh;
     margin-left: 20%;
     margin-top: 10%;
+}
+
+.soundIcon {
+    width: 20%;
+    height: 40%;
+    display: inline-block;
+    margin-bottom: 2%;
+    cursor: pointer;
+}
+
+
+.phoneLogo {
+    width: 45%;
+    height: 6.3vh;
+    display: inline-block;
+    margin-top: 2vh;
+    margin-left: 20%;
 }

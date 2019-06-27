@@ -7,7 +7,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="static/css/test.css">
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/glacial-indifference" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -22,78 +21,33 @@
     <div class="chatContainer">
         <div class="chatTop">
             <img class="phoneLogo" src="static/css/Images/phoneLogo.png">
+            <img class="soundIcon" src="static/css/Images/noSound.png">
         </div>
         <div class="chatMed">
             <div class="botSection">
                 <img class="botIcon" src="static/css/Images/robot4.png">
                 <div class="botBubble">
-                    <h5 class="botMessage">Hey, what are you looking for?</h5>
+                    <h5 class="botMessage">Hey there, what can I help you with?</h5>
                 </div>
-                <hr class="chatBreaker">
-            </div>
-            <div class="userSection">
-                <div class="userBubble">
-                    <h5 class="userMessage">Test1.</h5>
-                </div>
-                <img class="userIcon" src="static/css/Images/person.png">
-                <hr class="chatBreaker">
-            </div>
-            <div class="botSection">
-                <img class="botIcon" src="static/css/Images/robot4.png">
-                <div class="botBubble">
-                    <h5 class="botMessage">Hey, what are you looking for? Testing to see what happens when text is
-                        added.</h5>
-                </div>
-                <hr class="chatBreaker">
-            </div>
-            <div class="userSection">
-                <div class="userBubble">
-                    <h5 class="userMessage">Test2.</h5>
-                </div>
-                <img class="userIcon" src="static/css/Images/person.png">
-                <hr class="chatBreaker">
-            </div>
-            <div class="botSection">
-                <img class="botIcon" src="static/css/Images/robot4.png">
-                <div class="botBubble">
-                    <h5 class="botMessage">Hey, what are you looking for? This piece right here is being used to demo what a 3-line text looks like.</h5>
-                </div>
-                <hr class="chatBreaker">
-            </div>
-            <div class="userSection">
-                <div class="userBubble">
-                    <h5 class="userMessage">Test3.</h5>
-                </div>
-                <img class="userIcon" src="static/css/Images/person.png">
-                <hr class="chatBreaker">
-            </div>
-            <div class="botSection">
-                <img class="botIcon" src="static/css/Images/robot4.png">
-                <div class="botBubble">
-                    <h5 class="botMessage">Hey, what are you looking for?</h5>
-                </div>
-                <hr class="chatBreaker">
-            </div>
-            <div class="userSection">
-                <div class="userBubble">
-                    <h5 class="userMessage">Test3.</h5>
-                </div>
-                <img class="userIcon" src="static/css/Images/person.png">
                 <hr class="chatBreaker">
             </div>
         </div>
         <div class="chatBottom">
-            <form id="target">
+            <form id="target" action="#!" autocomplete="off">
                 <input class="input" type="text" value="" onblur="this.placeholder = '   Enter message...'"
-                    onfocus="this.placeholder = ''" placeholder="   Enter message..." id="input_message" />
+                    onfocus="this.placeholder = ''" placeholder="   Enter message..." id="inputMessage" />
                 <input type="submit" hidden>
+                <span id="final_span" class="final"></span>
+                <span id="interim_span" class="interim"></span>
             </form>
+            <img onclick=textSpeech() class="micPic" src="static/css/Images/Mic.png">
             <div class="sendButton">
                 <img class="send" src="static/css/Images/send.png">
             </div>
         </div>
     </div>
-    <script src="static/scripts/chatbot.js"></script>
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script type="text/javascript" src="static/scripts/chatbot.js"></script>
 </body>
 
 </html>
