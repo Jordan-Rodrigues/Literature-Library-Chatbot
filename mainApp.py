@@ -21,7 +21,7 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
-mycursor.execute("CREATE DATABASE mydatabase")
+mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
 
 #setting up pusher client
 pusher_client = pusher.Pusher(
