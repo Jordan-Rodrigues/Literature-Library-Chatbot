@@ -11,7 +11,7 @@ import mysql.connector
 app = Flask(__name__)
 
 #Setting up SQL Database
-DATABASE_URL = os.environ['CLEARDB_DATABASE_URL']
+DATABASE_URL = os.environ['HOST']
 
 mydb = mysql.connector.connect(
     host=DATABASE_URL,
