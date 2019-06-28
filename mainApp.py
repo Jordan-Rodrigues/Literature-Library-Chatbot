@@ -6,7 +6,21 @@ from selenium import webdriver
 import os
 import dialogflow
 import pusher
+import sys
+import mysql.connector
 app = Flask(__name__)
+
+#Setting up SQL Database
+DATABASE_URL = os.environ['CLEARDB_DATABASE_URL']
+
+mydb = mysql.connector.connect(
+    host=DATABASE_URL,
+    user="baf6d5c722a6e3",
+    password="07b6b22a",
+    database="heroku_debbc3435236421"
+)
+
+print(mydb)
 
 #setting up pusher client
 pusher_client = pusher.Pusher(
@@ -14,15 +28,7 @@ pusher_client = pusher.Pusher(
     key=os.getenv('PUSHER_KEY'),
     secret=os.getenv('PUSHER_SECRET'),
     cluster=os.getenv('PUSHER_CLUSTER'))
-
 #removed SSL true
-
-#Creating global variables that can be passed from page to page
-#global fulLURL
-#global PDFs
-#PDFs = []
-#fullURL = None
-
 
 #Route for the main page, renders the home template
 @app.route('/')
