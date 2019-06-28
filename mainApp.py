@@ -20,7 +20,8 @@ mydb = mysql.connector.connect(
     database="heroku_debbc3435236421"
 )
 
-print(mydb)
+mycursor = mydb.cursor()
+mycursor.execute("CREATE DATABASE mydatabase")
 
 #setting up pusher client
 pusher_client = pusher.Pusher(
