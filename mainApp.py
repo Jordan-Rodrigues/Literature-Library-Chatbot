@@ -13,16 +13,6 @@ app = Flask(__name__)
 #Setting up SQL Database
 DATABASE_URL = os.environ['HOST']
 
-mydb = mysql.connector.connect(
-    host=DATABASE_URL,
-    user="baf6d5c722a6e3",
-    password="07b6b22a",
-    database="heroku_debbc3435236421"
-)
-
-mycursor = mydb.cursor()
-mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
-
 #setting up pusher client
 pusher_client = pusher.Pusher(
     app_id=os.getenv('PUSHER_APP_ID'),
