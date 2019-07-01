@@ -29,11 +29,20 @@ def home():
 @app.route('/', methods=["POST", "GET"])
 def pageRoute():
     if request.method == 'POST':
-        return redirect(url_for("results"))
+        return redirect(url_for("chatbot"))
 
 @app.route('/Chatbot')
-def results():
+def chatbot():
     return render_template("chatbot.html")
+
+@app.route('/Chatbot', methods=["POST", "GET"])
+def pageRoute2():
+    if request.method == 'POST':
+        return redirect(url_for("results"))
+
+@app.route('/Results', methods=["POST", "GET"])
+def results():
+    return render_template("result.html")
     
 @app.route('/send_message', methods=['POST'])
 def send_message():

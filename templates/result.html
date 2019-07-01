@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PDF POC</title>
+    <title>ROKBot</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -14,12 +14,24 @@
 </head>
 
 <body>
-    <div class="resultTest">
-    <h5>JS Test</h5>
-    {% for link in PDFs %}
-    <a target="_blank" href={{link}}><img class="img1" src="static/css/Images/pdfPic.png"></a></a>
-    {% endfor %}
-    </div>
+    <h1 class="chatHeader">Student Innovation Challenge</h1>
+    <h1 class="robotHeader">Search Results</h1>
+    <div class="photoDisplay">The images will be displayed here</div>
+    <div class="featureDisplay">
+        <ul style="list-style:none;">
+            <li>Keywords:</li>
+            <li>Length:</li>
+            <li>Complexity:</li>
+        </ul>
+    </div> 
+    <form action="https://www.rockwellautomation.com/en_NA/literature-library/overview.page?" target="_blank">    
+    <button class="submitButton">Not what you're looking for?<br> Access the Lit. Library instead.</button>
+    </form>
 </body>
 
 </html>
+
+<!--
+{% for link in PDFs %}
+<a target="_blank" href={{link}}><img class="img1" src="static/css/Images/pdfPic.png"></a></a>
+{% endfor %}-->

@@ -407,3 +407,52 @@ html {
     margin-top: 2vh;
     margin-left: 20%;
 }
+/*------------------------------------------ PAGE 3 -----------------------------------*/
+
+li {
+    margin: 0 0 10px 0;
+}
+
+.featureDisplay {
+    font-family: dense;
+    color: #eeeeee;
+    font-size: 3em;
+    list-style: none;
+    font-weight: bold;
+    letter-spacing: .04em;
+}
+
+.litLibrary {
+
+}
+
+.photoDisplay {
+    background-color: #eeeeee;
+    text-align: center;
+    width: 80%;
+    height: 40vh;
+    margin: auto;
+}
+
+.submitButton {
+    background-color: #d6d6d6;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    font-family: dense;
+    color: #AE1A26;
+    font-size: 4em;
+    text-align: center;
+    width: 35%;
+    border-width: 3px 3px 5px 3px;
+    border-style: solid;
+    border-color: rgba(180,180,180,1);
+    cursor: pointer;
+    display: block;
+}
+
+.submitButton:focus {
+    border-width: 0px 3px 5px 3px;
+    border-style: solid;
+    border-color: #d6d6d6
+}

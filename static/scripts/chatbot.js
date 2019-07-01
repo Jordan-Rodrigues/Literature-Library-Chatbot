@@ -18,7 +18,7 @@ $(".soundIcon").click(function() {
   } else {
     console.log("func 2 is called")
     sound = true 
-    $(this).attr("src","static/css/Images/sound.png")
+    $(this).attr("src","static/css/Images/Sound.png")
   }
 })
 
