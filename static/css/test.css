@@ -437,7 +437,7 @@ li {
 .submitButton {
     background-color: #d6d6d6;
     margin: auto;
-    margin-top: 5%;
+    margin-top: 15%;
     margin-bottom: 10%;
     font-family: dense;
     color: #AE1A26;
@@ -455,4 +455,8 @@ li {
     border-width: 0px 3px 5px 3px;
     border-style: solid;
     border-color: #d6d6d6
+}
+
+#submitLink {
+    margin-top: 5% !important;
 }
