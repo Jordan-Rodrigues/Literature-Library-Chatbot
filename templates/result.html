@@ -8,16 +8,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/static/css/Images/icon.png" sizes="32x32" type="image/png"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/test.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/pdf.js') }}"></script>
+    <meta id="my-data" data-name="{{PDFs}}">
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/results.js') }}"></script>
     <link rel="stylesheet" href="static/css/test.css">
-    <script>
-    </script>
 </head>
 
 <body>
     <h1 class="chatHeader">Student Innovation Challenge</h1>
     <h1 class="robotHeader">Search Results</h1>
-    <div class="photoDisplay">The images will be displayed here</div>
+    <div class="photoDisplay">
+        <h2>The images will be displayed here</h2>
+        {% for link in PDFs %}
+        <a target="_blank" href={{link}}><img class="img1" src="static/css/Images/pdfPic.png"></a></a>
+        {% endfor %}
+        <canvas id="pdf0"></canvas>
+        <canvas id="pdf1"></canvas>
+        <canvas id="pdf2"></canvas>
+        <canvas id="pdf3"></canvas>
+        <canvas id="pdf4"></canvas>
+    </div>
     <div class="featureDisplay">
         <ul style="list-style:none;">
             <li>Keywords:</li>
@@ -25,14 +35,9 @@
             <li>Complexity:</li>
         </ul>
     </div> 
-    <form action="https://www.rockwellautomation.com/en_NA/literature-library/overview.page?" target="_blank">    
+    <form action={{url}} target="_blank">    
     <button id="submitLink" class="submitButton">Not what you're looking for?<br> Access the Lit. Library instead.</button>
     </form>
 </body>
-
+<script type="text/javascript" src="static/scripts/test.js"></script>
 </html>
-
-<!--
-{% for link in PDFs %}
-<a target="_blank" href={{link}}><img class="img1" src="static/css/Images/pdfPic.png"></a></a>
-{% endfor %}-->

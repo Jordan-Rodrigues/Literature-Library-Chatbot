@@ -235,9 +235,12 @@ html {
 }
 
 .chatBreaker {
-    margin-top: 2%;
-    width: 95%;
-    margin: auto;
+    border:solid 1px rgba(180,180,180,1);
+    width: 96%;
+    color: rgba(180,180,180,1);
+    height: 0px;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .chatContainer {

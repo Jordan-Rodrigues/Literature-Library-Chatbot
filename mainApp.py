@@ -5,9 +5,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 import os
 import dialogflow
-import pusher
+import pusher 
 import sys
-import mysql.connector
 app = Flask(__name__)
 
 #Setting up SQL Database
@@ -19,7 +18,9 @@ pusher_client = pusher.Pusher(
     key=os.getenv('PUSHER_KEY'),
     secret=os.getenv('PUSHER_SECRET'),
     cluster=os.getenv('PUSHER_CLUSTER'))
-#removed SSL true
+#Globalvar for filter list
+
+filterList = None
 
 #Route for the main page, renders the home template
 @app.route('/')
@@ -38,12 +39,22 @@ def chatbot():
 @app.route('/Chatbot', methods=["POST", "GET"])
 def pageRoute2():
     if request.method == 'POST':
+        print("test message")
         return redirect(url_for("results"))
 
 @app.route('/Results', methods=["POST", "GET"])
 def results():
-    return render_template("result.html")
-    
+    global filterList
+    filterList = filterList.split(",")
+    keyword = filterList[0]
+    filterCategory = wordToUrlChunk(filterList[1])
+    filterName = filterList[2]
+    filterDictionary = {filterCategory : [filterName]}
+    finalUrl = urlCreator(keyword, filterDictionary)
+    PDFs = pdfReturner(finalUrl)
+    time.sleep(2)
+    return render_template("result.html", PDFs = PDFs, url = finalUrl)
+
 @app.route('/send_message', methods=['POST'])
 def send_message():
     message = request.form['message']
@@ -52,6 +63,12 @@ def send_message():
     time.sleep(1)
     pusher_client.trigger('ROKbot', 'new_message', {'message' : fulfillment_text})
     return jsonify(fulfillment_text)
+
+@app.route('/filter_process', methods=['POST'])
+def filterProcess():
+    global filterList
+    filterList = request.form["filterList"]
+    return filterList
 #-----------------------------------------FUNCTIONS--------------------------------
 def urlCreator(keyword, filterDictionary):
     #First part of the URL
@@ -70,7 +87,6 @@ def urlCreator(keyword, filterDictionary):
             #applying custom url codes derived from pattern analysis
             filter = filter.replace(" ", "%2520")
             filter = filter.replace("/", "%252F")
-            print("FILTER IS " + filter)
             #if you're on the last one, end it
             if (counter == numFilters - 1):
                 filterBody += (filter + "%2522%2529")
@@ -86,7 +102,7 @@ def urlCreator(keyword, filterDictionary):
         filterSection += (filterHeader + filterBody)
         dictPosCounter += 1
     finalURL = urlStart + keyword + ";startIndex=0;activeTab=Literature;spellingCorrect=true;" + "facets=" + filterSection + ";languages=en;locales=en_NA,en_GLOBAL;sort=bma;"
-    print(finalURL)
+    finalURL = finalURL.replace(" ", "%2520")
     return finalURL
 
 
@@ -103,3 +119,33 @@ def detect_intent_texts(project_id, session_id, text, language_code):
             session=session, query_input=query_input)
 
         return response.query_result.fulfillment_text
+
+def wordToUrlChunk(word):
+    word = word.lower()
+    if word == "publication type":
+        return "doc_type_full_s"
+    elif word == "solutions":
+        return "solution_ss"
+    elif word == "industries":
+        return "industry_ss"
+    elif word == "services":
+        return "service_ss"
+
+def pdfReturner(fullURL):
+    PDFs = []
+    #Creates an invisible browser (headless) to load the page manually (allows JS to render) and then pulls in all the relevant links
+    options = Options()
+    options.add_argument('--headless')
+    browser = webdriver.Chrome()
+    browser.get(fullURL)
+    tags = browser.find_elements_by_css_selector("div.literature.ra a")
+
+    #for each tag pulled from the website, add the URL of that tag to the PDF list if it isn't none
+    for tag in tags:
+        if (tag.get_attribute("href") != None):
+            PDFs.append(tag.get_attribute("href"))
+    if len(PDFs) > 5:
+        PDFs = PDFs[0:5]
+    return PDFs
+    
+   

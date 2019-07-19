@@ -3,20 +3,16 @@ var pusher = new Pusher('d4e5e20b03824cd11efd', {
   cluster: 'us2',
   encrypted: true
 });
-
 const channel = pusher.subscribe('ROKbot');
-
 channel.bind('new_message', robotSend)
 
+//Text-to-Speech Set-Up
 var sound = false
-
 $(".soundIcon").click(function() {
   if (sound == true) {
-    console.log("func1 is called")
     sound = false
     $(this).attr("src","static/css/Images/noSound.png")
   } else {
-    console.log("func 2 is called")
     sound = true 
     $(this).attr("src","static/css/Images/sound.png")
   }
@@ -27,6 +23,7 @@ $(document).ready(function () {
   $(this).scrollTop(0);
 });
 
+//Allows for user input submission
 $("#inputMessage").keypress(function (event) {
   if (event.which == 13) {
     userSend()
@@ -44,10 +41,15 @@ $("#target").submit(function (e) {
   return false;
 })
 
-
+//Create global variable to save user input
+var userMessage = ""
+//Create global filter list to pass to backend
+var filterList = new Array;
 function userSend() {
   if ($(".input").val() != "") {
     var userInput = $(".input").val();
+    //Saving the user message as a global variable
+    window.userMessage = userInput
     submit_message(userInput)
     $(' <div class="userSection"> ' +
       '<div class="userBubble">' +
@@ -64,8 +66,10 @@ function chatScroll() {
   $('.chatMed').scrollTop($('.chatMed')[0].scrollHeight);
 }
 
+//setting up flag value to decide to send data
+var flag = false
+var keywordFlag = false
 function robotSend(data) {
-  console.log(sound + " outside")
   if (data.message != undefined) {
     $(' <div class="botSection"> ' + '<img class="botIcon" src="static/css/Images/robot4.png">' +
       '<div class="botBubble">' +
@@ -74,13 +78,33 @@ function robotSend(data) {
       '<hr class="chatBreaker">' +
       '</div>').hide().appendTo(".chatMed").fadeIn(1500)
       var utterance = new SpeechSynthesisUtterance(data.message) 
-      console.log(sound === true)
       if (sound === true) {
-        console.log("test")
         speechSynthesis.speak(utterance)
       }
-      
-  }
+    }
+    if (window.keywordFlag == true) {
+      console.log("keyword has been activated")
+      window.filterList.push(window.userMessage)
+    }
+
+    if (window.flag == true) {
+      window.filterList.push(window.userMessage)
+      console.log(window.filterList.toString())
+    }
+
+    if ((data.message != undefined) && data.message.includes("What kind of filter are you looking to apply?")) {
+      window.flag = true
+    }
+
+    if ((data.message != undefined) && data.message.includes("I can help you search for")) {
+      window.filterList.push(window.userMessage)
+    }
+
+    if ((data.message != undefined) && data.message.includes("Sounds good to me.")) {
+      nextPage()
+    }
+
+    console.log(window.filterList.toString())
   chatScroll()
 }
 
@@ -119,7 +143,6 @@ recognition.onresult = function (event) {
 
 recognition.onend = function() {
   recognizing = false
-  console.log(final_transcript)
   if (final_transcript == "") {
     alert("Sorry, your mic didn't catch that. Please check your settings and try again")
   }
@@ -150,5 +173,11 @@ function submit_message(message) {
   $.post("/send_message", {
     message: message,
     socketId: socketId
-  }, robotSend)
+  })
 }
+
+function nextPage() {
+  $.post("/filter_process", {
+    filterList: window.filterList.toString()
+  })
+} 
