@@ -42860,12 +42860,8 @@ var NetworkManager = (function NetworkManagerClosure() {
       var networkManager = this._manager;
       var fullRequestXhrId = this._fullRequestId;
       var fullRequestXhr = networkManager.getRequestXhr(fullRequestXhrId);
-      if (fullRequestXhr.getResponseHeader('Accept-Ranges') !== 'bytes') {
-        return false;
-      }
-
-      var contentEncoding =
-        fullRequestXhr.getResponseHeader('Content-Encoding') || 'identity';
+ 
+      var contentEncoding = 'identity';
       if (contentEncoding !== 'identity') {
         return false;
       }
