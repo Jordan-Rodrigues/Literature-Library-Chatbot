@@ -9,5 +9,7 @@ The HTML has hard-coded values as this demo was run for Rockwell Automation's St
 * Jordan Rodrigues
 * Jacob Lebowitz
 * Tiger Gamble
+<br>
+<br>
 
 ![Image of the ROKBot GUI](https://github.com/Jordan-Rodrigues/ROKBot/blob/master/readme_images/rokbotPic.png)
