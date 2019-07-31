@@ -3,7 +3,7 @@ Hey there! ROKBot is a web-scraping, Dialogflow-based chatbot that parses inform
 
 ROKBot talks users through the process of searching for a Rockwell Product, giving them the option to add and remove filters as necessary. Once the filters have been applied, ROKBot pulls the information from the Literature Library and applies a variety of Python functions on the Flask-implemented backend to generate statistics such as keywords, document length, and a one sentence summary. 
 <br><br>
-The HTML has hard-coded values as this demo was run for Rockwell Automation's Student Innovation Challenge (**Earned 1st Place, Best Problem Award, Best Solution Award**) since the local network at Rockwell blocked CORS, meaning that ROKBot had difficulties dynamically scraping the data.
+The HTML has hard-coded values as this demo was run for Rockwell Automation's Student Innovation Challenge (**Earned 1st Place (of 21 teams), Best Problem Award, Best Solution Award**) since the local network at Rockwell blocked CORS, meaning that ROKBot had difficulties dynamically scraping the data.
 
 #### Contributors:
 * Jordan Rodrigues
