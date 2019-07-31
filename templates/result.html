@@ -6,7 +6,7 @@
     <title>ROKBot</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/static/css/Images/icon.png" sizes="32x32" type="image/png"> 
+    <link rel="icon" href="/static/css/Images/icon.png" sizes="32x32" type="image/png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='scripts/pdf.js') }}"></script>
     <meta id="my-data" data-name="{{PDFs}}">
@@ -18,26 +18,56 @@
     <h1 class="chatHeader">Student Innovation Challenge</h1>
     <h1 class="robotHeader">Search Results</h1>
     <div class="photoDisplay">
-        <h2>The images will be displayed here</h2>
-        {% for link in PDFs %}
-        <a target="_blank" href={{link}}><img class="img1" src="static/css/Images/pdfPic.png"></a></a>
-        {% endfor %}
-        <canvas id="pdf0"></canvas>
-        <canvas id="pdf1"></canvas>
-        <canvas id="pdf2"></canvas>
-        <canvas id="pdf3"></canvas>
-        <canvas id="pdf4"></canvas>
+        <a target="_blank"
+            href="https://literature.rockwellautomation.com/idc/groups/literature/documents/rm/pflex-rm001_-en-e.pdf"><img
+                class="img1" src="static/PDFS/pdf1.PNG"></a>
+        <a target="_blank"
+            href="https://literature.rockwellautomation.com/idc/groups/literature/documents/rm/pflex-rm002_-en-e.pdf"><img
+                class="img1" src="static/PDFS/pdf2.PNG"></a></a>
+        <a target="_blank"
+            href="https://literature.rockwellautomation.com/idc/groups/literature/documents/rm/pflex-rm003_-en-e.pdf"><img
+                class="img1" src="static/PDFS/pdf3.PNG"></a></a>
+        <a target="_blank"
+            href="https://literature.rockwellautomation.com/idc/groups/literature/documents/rm/20d-rm001_-en-p.pdf"><img
+                class="img1" src="static/PDFS/pdf4.PNG"></a></a>
+        <a target="_blank"
+            href="https://literature.rockwellautomation.com/idc/groups/literature/documents/rm/750-rm004_-en-p.pdf "><img
+                class="img1" src="static/PDFS/pdf5.PNG"></a></a>
     </div>
-    <div class="featureDisplay">
-        <ul style="list-style:none;">
-            <li>Keywords:</li>
-            <li>Length:</li>
-            <li>Complexity:</li>
-        </ul>
-    </div> 
-    <form action={{url}} target="_blank">    
-    <button id="submitLink" class="submitButton">Not what you're looking for?<br> Access the Lit. Library instead.</button>
+        <h4 class="label">Keywords:</h4>
+    <div class="keyWords">
+        <h5 class="keyword">[Motoring, Controls, Torque]</h5>
+        <h5 class="keyword">[Motoring, Data, Controls]</h5>
+        <h5 class="keyword">[Positions, Enconder, Configs]</h5>
+        <h5 class="keyword">[Terminator, Cabling, Voltage]</h5>
+        <h5 class="keyword">[Controls, Supplies, Modulation]</h5>
+    </div>
+    <div></div>
+    <h4 class="label">Page Count:</h4>
+    <div class="pageCount">
+        <h5 class="number">214</h5>
+        <h5 class="number">190</h5>
+        <h5 class="number">218</h5>
+        <h5 class="number">60</h5>
+        <h5 class="number">102</h5>
+    </div>
+    <div></div>
+    <h4 class="label">Summaries:</h4>
+    <div class="summaries">
+        <h5 class="summary">The drive has monitored DC bus voltage and is able to reduce the output voltage to the motor to attempt to
+                reduce energy costs during a lightly loaded situation.</h5>
+        <h5 class="summary">A value of 1 for PI High Limit can represent base motor speed, rated motor torque, or 100% of some
+                external function.</h5>
+        <h5 class="summary">The drive has a process PI loop that can be used to trim speed, torque, or other functions.</h5>
+        <h5 class="summary">Discusses EMC, Grounding, and Power Jumper settings if your system doesn't match Rockwell
+        recommendations.</h5>
+        <h5 class="summary">Similarities & Differences between the PowerFlex 700AFE and PowerFlex 755TM bus supplies.</h5>
+    </div>
+    <form action={{url}} target="_blank">
+        <button id="submitLink" class="submitButton">Not what you're looking for?<br> Access the Lit. Library
+            instead.</button>
     </form>
 </body>
 <script type="text/javascript" src="static/scripts/test.js"></script>
+
 </html>

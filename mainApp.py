@@ -52,7 +52,7 @@ def results():
     filterDictionary = {filterCategory : [filterName]}
     finalUrl = urlCreator(keyword, filterDictionary)
     PDFs = pdfReturner(finalUrl)
-    time.sleep(2)
+    time.sleep(1)
     return render_template("result.html", PDFs = PDFs, url = finalUrl)
 
 @app.route('/send_message', methods=['POST'])

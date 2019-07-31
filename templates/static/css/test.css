@@ -235,9 +235,12 @@ html {
 }
 
 .chatBreaker {
-    margin-top: 2%;
-    width: 95%;
-    margin: auto;
+    border:solid 1px rgba(180,180,180,1);
+    width: 96%;
+    color: rgba(180,180,180,1);
+    height: 0px;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .chatContainer {
@@ -359,6 +362,20 @@ html {
     padding-right: 10px;
 }
 
+.img1 {
+    width: 85%;
+    height: 90%;
+}
+
+.photoDisplay {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    height: 40vh;
+    margin-left: 15%;
+    margin-right: 0;
+}
+
 .micPic {
     height: 30%;
     width: 5%;
@@ -414,37 +431,16 @@ li {
     margin: 0 0 10px 0;
 }
 
-.featureDisplay {
-    font-family: dense;
-    color: #eeeeee;
-    font-size: 3em;
-    list-style: none;
-    font-weight: bold;
-    letter-spacing: .04em;
-}
-
-.litLibrary {
-
-}
-
-.photoDisplay {
-    background-color: #eeeeee;
-    text-align: center;
-    width: 80%;
-    height: 40vh;
-    margin: auto;
-}
-
 .submitButton {
     background-color: #d6d6d6;
     margin: auto;
-    margin-top: 5%;
+    margin-top: 15%;
     margin-bottom: 10%;
     font-family: dense;
     color: #AE1A26;
     font-size: 4em;
     text-align: center;
-    width: 30%;
+    width: 35%;
     border-width: 3px 3px 5px 3px;
     border-style: solid;
     border-color: rgba(180,180,180,1);
@@ -453,7 +449,69 @@ li {
 }
 
 .submitButton:focus {
-    border-width: 3px 3px 5px 3px;
+    border-width: 0px 3px 5px 3px;
     border-style: solid;
     border-color: #d6d6d6
+}
+
+#submitLink {
+    margin-top: 5% !important;
+}
+
+.keyWords {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.keyword {
+    display: inline-block;
+    font-family: dense;
+    color: white;
+    font-size: 3vh;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.summaries {
+    display: inline-flex;
+    width: 80%;
+    justify-content: space-between;
+}
+
+.summary {
+    display: inline-block;
+    font-family: dense;
+    color: white;
+    font-size: 3vh;
+    width: 15%;
+    margin-top: 0;
+    margin-bottom: 0;
+    letter-spacing: .03em;
+}
+
+.pageCount {
+    display: inline-flex;
+    width: 80%;
+    justify-content: space-between;
+}
+
+.number {
+    display: inline-block;
+    font-family: dense;
+    color: white;
+    font-size: 3vh;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.label {
+    display: inline-block;
+    color: white;
+    font-family: dense;
+    font-size: 4vh;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
