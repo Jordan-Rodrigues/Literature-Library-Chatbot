@@ -10,4 +10,4 @@ The HTML has hard-coded values as this demo was run for Rockwell Automation's St
 * Jacob Lebowitz
 * Tiger Gamble
 
-![Image of the ROKBot GUI](https://github.com/Jordan-Rodrigues/ROKBot/blob/master/Images/readme_images/rokbotPic.PNG)
+![Image of the ROKBot GUI](https://github.com/Jordan-Rodrigues/ROKBot/blob/master/readme_images/rokbotPic.PNG)
